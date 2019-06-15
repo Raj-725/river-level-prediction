@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section text-center">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group justify-content-center">
+                <legend class="border-bottom mb-3">Register your interest</legend>
+                <p class="text-info">Enter your name, email address and chosen river for regular updates on level
+                    predictions</p>
+                <div class="form-group form-inline justify-content-center">
+                    {{ form.name.label(class="form-control-label mr-3") }}
+                    {{ form.name(class="form-control form-control-sm", placeholder="Your name") }}
+
+                </div>
+                <div class="form-group form-inline justify-content-center">
+                    {{ form.email.label(class="form-control-label mr-3") }}
+                    {{ form.email(class="form-control form-control-sm", placeholder="Enter email", type="email") }}
+                </div>
+                <div class="form-group form-inline justify-content-center">
+                    {{ form.location.label(class="form-control-label mr-3") }}
+                    {{ form.location(class="form-control form-control-sm", placeholder="Chosen river") }}
+                </div>
+                <div class="form-group form-inline justify-content-center">
+                    {{ form.reason.label(class="form-control-label mr-3") }}
+                    {{ form.reason(class="form-control form-control-sm", placeholder="e.g. watersports") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

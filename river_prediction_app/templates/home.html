@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <h2 class="bg-light mb-sm-3 ">River Level Prediction</h2>
+        {% for _ in range(2) %}
+            <div class="mb-sm-3">
+                <div class="card bg-light">
+                    <div class="card-header h4">Taff at Western Avenue</div>
+                    <div class="card-body">
+                        <div class="card-title h5">Current Level:</div>
+                        <h6 class="card-title">River Level: <strong>{{ data.current_level }} Mtr</strong></h6>
+                        <h6 class="card-title">Station Name: <strong>{{ data.station_name }}</strong></h6>
+                        <h6 class="card-title">Latest Time: <strong>{{ data.latest_time }}</strong></h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title h5">Predictions:</div>
+                        <h6 class="card-title">River Level: <strong>{{ data.prediction }}</strong></h6>
+                        <small class="card-text">Based on Open Weather Map 5 day predictions.</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
