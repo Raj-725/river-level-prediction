@@ -26,5 +26,12 @@ from river_prediction_app import routes
 from river_prediction_app.backgound_scheduler import JobScheduler
 
 job_scheduler = JobScheduler()
-# job_scheduler.schedule_email()
-# job_scheduler.schedule_api_jobs()
+EMAIL_INTERVAL = 12 * 60 * 60
+RIVER_LEVEL_PREDICTION_INTERVAL = 3 * 60 * 60
+
+job_scheduler.schedule_email(EMAIL_INTERVAL)
+job_scheduler.schedule_river_level_prediction_job(RIVER_LEVEL_PREDICTION_INTERVAL)
+
+# job_scheduler.schedule_river_level_prediction_job(15)
+# job_scheduler.schedule_email(60)
+

@@ -24,7 +24,8 @@ class RiverLevel(db.Model, CRUD):
     avg_rain = db.Column(db.Float)
 
     def __repr__(self):
-        return f"RiverLevel('{self.river_name}', '{self.station_name}', '{self.level}', '{self.prediction}')"
+        return f"RiverLevel(River: '{self.river_name}', Station: '{self.station_name}', " \
+            f"Current Level: '{self.level}', Prediction: '{self.prediction}')"
 
 
 class Subscription(db.Model, CRUD):

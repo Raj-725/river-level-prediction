@@ -11,6 +11,7 @@ from river_prediction_app.models import Subscription, RiverLevel
 def home():
     data = {'prediction': 'Level will go up', 'current_level': '0.5', 'station_name': 'Western Avenue',
             'latest_time': '15/06/2019 12:00'}
+    data = RiverLevel.query.first()
     return render_template('home.html', data=data)
 
 

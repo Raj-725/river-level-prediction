@@ -43,7 +43,6 @@ def parse_river_api_response(resp):
                 'time': first_station_readings['LatestTime'],
                 'station_id': first_station_readings['Location']
             }
-            print('values : {}'.format(first_station_readings))
     return values
 
 
@@ -60,6 +59,5 @@ def parse_weather_api_response(resp):
                 _3h_rain_prediction=rain_prediction.get("3h")
                 if _3h_rain_prediction is not None:
                     rain_predictions.append(_3h_rain_prediction)
-    print(rain_predictions)
     rain_prediction = sum(rain_predictions) / len(rain_predictions)
     return rain_prediction

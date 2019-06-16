@@ -23,7 +23,7 @@ def get_river_data():
     status_code = resp.status_code
     if status_code != 200:
         # This means something went wrong.
-        print("Error fetching data: {}", status_code)
+        print("Error fetching data: ", status_code)
         return
     river_level = utilities.parse_river_api_response(resp)
 
@@ -55,6 +55,8 @@ def get_rain_prediction():
 
 def get_river_level():
     river_level = get_river_data()
+    if river_level is None:
+        return
     rain_prediction = get_rain_prediction()
     river_level_prediction = utilities.predict_river_level(rain_prediction)
     river_level['avg_rain'] = rain_prediction
