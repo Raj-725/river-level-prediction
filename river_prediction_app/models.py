@@ -1,31 +1,19 @@
-from datetime import datetime
 from river_prediction_app import db
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
-    posts = db.relationship('Post', backref='author', lazy=True)
+class CRUD():
 
-    def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+    def save(self):
+        if self.id is None:
+            db.session.add(self)
+        return db.session.commit()
 
-
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+    def destroy(self):
+        db.session.delete(self)
+        return db.session.commit()
 
 
-class RiverLevel(db.Model):
+class RiverLevel(db.Model, CRUD):
     id = db.Column(db.Integer, primary_key=True)
     river_name = db.Column(db.String(100))
     station_id = db.Column(db.String(100))
@@ -33,12 +21,13 @@ class RiverLevel(db.Model):
     level = db.Column(db.String(100))
     time = db.Column(db.String(100))
     prediction = db.Column(db.String(100))
+    avg_rain = db.Column(db.Float)
 
     def __repr__(self):
-        return f"RiverLevel('{self.river_name}', '{self.station_name}', '{self.level}')"
+        return f"RiverLevel('{self.river_name}', '{self.station_name}', '{self.level}', '{self.prediction}')"
 
 
-class Subscription(db.Model):
+class Subscription(db.Model, CRUD):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)

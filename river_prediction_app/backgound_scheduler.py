@@ -1,6 +1,10 @@
 import atexit
+
 from apscheduler.schedulers.background import BackgroundScheduler
-from .river_api import print_date_time
+
+from river_prediction_app import river_api
+from river_prediction_app.models import RiverLevel
+from river_prediction_app.river_api import print_date_time
 
 
 class JobScheduler:
@@ -22,3 +26,9 @@ class JobScheduler:
 
 def send_email():
     print("Sent")
+
+
+def get_river_levels():
+    river_level_obj = river_api.get_river_level()
+    river_level = RiverLevel(**river_level_obj)
+    river_level.save()
