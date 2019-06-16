@@ -20,6 +20,10 @@ class SendMail:
         message = f'Prediction: {river_level_prediction.prediction}'
         mail = self.compile_mail(subject, message, recipients=recipient_list)
         with self.app.app_context():
-            self.mail.send(mail)
+            try :
+                self.mail.send(mail)
+            except:
+                print("Please setup email account...!")
+                return
         print("Emails Sent...")
 
